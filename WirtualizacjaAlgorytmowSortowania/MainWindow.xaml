@@ -5,8 +5,63 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WirtualizacjaAlgorytmowSortowania"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="AlgorythmSortVirtualization" Height="450" Width="800">
     <Grid>
+        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto" MinHeight="50"/>
+            <RowDefinition Height="Auto" MinHeight="50"/>
+            <RowDefinition Height="auto" MinHeight="50"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
 
+        <TextBlock  Text="Hello," 
+                    FontSize="30"
+                    VerticalAlignment="Center" 
+                    HorizontalAlignment="Center"
+                    Grid.Row="0"
+                    Grid.Column="1"
+                    Height="40" 
+                    Width="76"/>
+
+        <TextBlock  Text="Write youre numbers you want to sort"
+                    FontSize="15" 
+                    VerticalAlignment="Center" 
+                    HorizontalAlignment="Center"
+                    Grid.Row="1"
+                    Grid.Column="1" 
+                    Height="20" 
+                    Width="256"/>
+
+        <TextBox x:Name="numbersString"
+         Grid.Row="2"
+         Grid.ColumnSpan="3"
+         Grid.Column="0"
+         VerticalAlignment="Center"
+         FontSize="16"
+         BorderBrush="Gray"
+         BorderThickness="1"
+         Padding="5"                                                                         
+         TextWrapping="Wrap" 
+         Height="33"
+         Margin="20,0,20,0"
+         KeyDown="EnterDown"/>
+
+        <Button x:Name="btnSort" 
+                Grid.Row="3"
+                Grid.Column="1"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center" 
+                Width="150"
+                Height="50" 
+                FontSize="16" 
+                Content="Sort"
+                Click="btnSort_Click" />
     </Grid>
 </Window>
