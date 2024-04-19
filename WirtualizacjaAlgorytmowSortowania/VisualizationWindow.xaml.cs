@@ -5,13 +5,20 @@ namespace WirtualizacjaAlgorytmowSortowania
 {
     public partial class VisualizationWindow : Window
     {
+        List<float> numList = MainWindow.numbersList;
+
 
         public VisualizationWindow()
         {
             InitializeComponent();
 
-
         }
+
+
+
+
+
+
 
 
 
@@ -20,6 +27,7 @@ namespace WirtualizacjaAlgorytmowSortowania
             MainWindow mainWindow = new MainWindow();
             this.Close();
             mainWindow.Show();
+
         }
     }
 }

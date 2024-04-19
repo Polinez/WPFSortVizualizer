@@ -3,11 +3,9 @@ using System.Windows.Input;
 
 namespace WirtualizacjaAlgorytmowSortowania
 {
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
     public partial class MainWindow : Window
     {
+        public static List<float> numbersList { get; }
         public MainWindow()
         {
             InitializeComponent();
@@ -55,7 +53,7 @@ namespace WirtualizacjaAlgorytmowSortowania
                 throw new Exception("No numbers to sort, it neet to be more than 1 number");
             }
 
-            List<float> numbersList = new List<float>();
+            numbersList = new List<float>();
             foreach (string num in numbersTab)
             {
                 if (float.TryParse(num, out float number))
