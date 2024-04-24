@@ -5,7 +5,7 @@ namespace WirtualizacjaAlgorytmowSortowania
 {
     public partial class MainWindow : Window
     {
-        public static List<float> numbersList { get; }
+        public static List<float> numbersList { get; set; }
         public MainWindow()
         {
             InitializeComponent();

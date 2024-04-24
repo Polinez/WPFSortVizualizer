@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:WirtualizacjaAlgorytmowSortowania"
         mc:Ignorable="d"
         Title="VisualizationWindow" Height="450" Width="800">
-    <Grid>
+    <Grid x:Name="mainGrid">
         <Grid.RowDefinitions>
             <RowDefinition Height="50"/>
             <RowDefinition Height="*"/>
@@ -20,34 +20,70 @@
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
-        <Button Content="Return" Grid.Column="0" Grid.Row="0"  Margin="10,10,100,10"  Click="ReturnButton_Click"/>
         
-        <TextBlock Text="Bubble Sort" Grid.Column="0" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Top" ></TextBlock>
-        <TextBlock x:Name="timerBubble" Text="00:00:00" Grid.Column="0" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Bottom" ></TextBlock>
-        
+        <!-- borders -->
+        <Border Grid.Row="0" Grid.Column="0" BorderThickness="1" BorderBrush="Black"/>
+        <Border Grid.Row="0" Grid.Column="1" BorderThickness="1" BorderBrush="Black"/>
+        <Border Grid.Row="0" Grid.Column="2" BorderThickness="1" BorderBrush="Black"/>
+
+        <Border Grid.Row="1" Grid.Column="0" BorderThickness="1" BorderBrush="Black"/>
+        <Border Grid.Row="1" Grid.Column="1" BorderThickness="1" BorderBrush="Black"/>
+        <Border Grid.Row="1" Grid.Column="2" BorderThickness="1" BorderBrush="Black"/>
+
+        <Border Grid.Row="2" Grid.Column="0" BorderThickness="1" BorderBrush="Black"/>
+        <Border Grid.Row="2" Grid.Column="1" BorderThickness="1" BorderBrush="Black"/>
+        <Border Grid.Row="2" Grid.Column="2" BorderThickness="1" BorderBrush="Black"/>
+
+        <Border Grid.Row="3" Grid.Column="0" BorderThickness="1" BorderBrush="Black"/>
+        <Border Grid.Row="3" Grid.Column="1" BorderThickness="1" BorderBrush="Black"/>
+        <Border Grid.Row="3" Grid.Column="2" BorderThickness="1" BorderBrush="Black"/>
+
+        <!-- buttons -->
+        <Button Content="Return" Grid.Column="0" Grid.Row="0"  
+                HorizontalAlignment="Center" VerticalAlignment="Center"
+                Height="30" Width="100"
+                Click="ReturnButton_Click"/>
+
+        <Button Content="Start" Grid.Column="1" Grid.Row="0"
+        HorizontalAlignment="Center" VerticalAlignment="Center"
+          Height="30" Width="100"
+                Tag="0"
+        Click="StartButton_Click"/>
+
+        <Button Content="Stop" Grid.Column="2" Grid.Row="0"
+                HorizontalAlignment="Center" VerticalAlignment="Center"
+                  Height="30" Width="100"
+                Tag="1"
+                Click="StopButton_Click"/>
+
+
+        <!-- Alghoritms -->
+        <TextBlock Text="Bubble Sort" Grid.Column="0" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Top"></TextBlock>
+        <Label x:Name="timerBubble" Content="00:00:00" Grid.Column="0" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Bottom"></Label>
+
         <TextBlock Text="Insertion Sort" Grid.Column="0" Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Top"></TextBlock>
-        <TextBlock x:Name="timerInsert" Text="00:00:00" Grid.Column="0" Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Bottom" ></TextBlock>
-        
+        <Label x:Name="timerInsertion" Content="00:00:00" Grid.Column="0" Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Bottom"></Label>
+
         <TextBlock Text="Selection Sort" Grid.Column="0" Grid.Row="3" HorizontalAlignment="Center" VerticalAlignment="Top"></TextBlock>
-        <TextBlock x:Name="timerSelection" Text="00:00:00" Grid.Column="0" Grid.Row="3" HorizontalAlignment="Center" VerticalAlignment="Bottom" ></TextBlock>
-        
+        <Label x:Name="timerSelection" Content="00:00:00" Grid.Column="0" Grid.Row="3" HorizontalAlignment="Center" VerticalAlignment="Bottom"></Label>
+
         <TextBlock Text="Merge Sort" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Top"></TextBlock>
-        <TextBlock x:Name="timerMarge" Text="00:00:00" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Bottom" ></TextBlock>
-        
+        <Label x:Name="timerMerge" Content="00:00:00" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Bottom"></Label>
+
         <TextBlock Text="Quick Sort" Grid.Column="1" Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Top"></TextBlock>
-        <TextBlock x:Name="timerQuick" Text="00:00:00" Grid.Column="1" Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Bottom" ></TextBlock>
+        <Label x:Name="timerQuick" Content="00:00:00" Grid.Column="1" Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Bottom"></Label>
 
         <TextBlock Text="Heap Sort" Grid.Column="1" Grid.Row="3" HorizontalAlignment="Center" VerticalAlignment="Top"></TextBlock>
-        <TextBlock x:Name="timerHeap" Text="00:00:00" Grid.Column="1" Grid.Row="3" HorizontalAlignment="Center" VerticalAlignment="Bottom" ></TextBlock>
-        
+        <Label x:Name="timerHeap" Content="00:00:00" Grid.Column="1" Grid.Row="3" HorizontalAlignment="Center" VerticalAlignment="Bottom"></Label>
+
         <TextBlock Text="Bucket Sort" Grid.Column="2" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Top"></TextBlock>
-        <TextBlock x:Name="timerBucket" Text="00:00:00" Grid.Column="2" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Bottom" ></TextBlock>
+        <Label x:Name="timerBucket" Content="00:00:00" Grid.Column="2" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Bottom"></Label>
 
         <TextBlock Text="Counting Sort" Grid.Column="2" Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Top"></TextBlock>
-        <TextBlock x:Name="timerCounting" Text="00:00:00" Grid.Column="2" Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Bottom" ></TextBlock>
-        
+        <Label x:Name="timerCounting" Content="00:00:00" Grid.Column="2" Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Bottom"></Label>
+
         <TextBlock Text="Radix Sort" Grid.Column="2" Grid.Row="3" HorizontalAlignment="Center" VerticalAlignment="Top"></TextBlock>
-        <TextBlock x:Name="timerRadix" Text="00:00:00" Grid.Column="2" Grid.Row="3" HorizontalAlignment="Center" VerticalAlignment="Bottom" ></TextBlock>
+        <Label x:Name="timerRadix" Content="00:00:00" Grid.Column="2" Grid.Row="3" HorizontalAlignment="Center" VerticalAlignment="Bottom"></Label>
 
 
     </Grid>

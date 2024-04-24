@@ -1,11 +1,13 @@
 ﻿namespace WirtualizacjaAlgorytmowSortowania
 {
-    public class Algorytms
+    public static class Algorytms
     {
-        public List<float> BubbleSort(List<float> arr) // bubble sort
+
+
+        public static List<float> BubbleSort(List<float> arr) // bubble sort
         {
             List<float> BubbleList = arr;
-            var n = BubbleList.Count;
+            int n = BubbleList.Count;
             for (int i = 0; i < n - 1; i++)
                 for (int j = 0; j < n - i - 1; j++)
                     if (BubbleList[j] > BubbleList[j + 1])
@@ -15,6 +17,7 @@
                         BubbleList[j + 1] = tempVar;
                     }
             return BubbleList;
+
         }
 
         public static List<float> MergeSort(List<float> arr) //merge sort 
