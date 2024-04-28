@@ -5,85 +5,91 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WirtualizacjaAlgorytmowSortowania"
         mc:Ignorable="d"
-        Title="VisualizationWindow" Height="450" Width="800">
+        Title="Algorithm Visualizer" Height="450" Width="800">
     <Grid x:Name="mainGrid">
         <Grid.RowDefinitions>
-            <RowDefinition Height="50"/>
+            <RowDefinition Height="70"/>
             <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
+
         </Grid.RowDefinitions>
 
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
-        
-        <!-- borders -->
-        <Border Grid.Row="0" Grid.Column="0" BorderThickness="1" BorderBrush="Black"/>
-        <Border Grid.Row="0" Grid.Column="1" BorderThickness="1" BorderBrush="Black"/>
-        <Border Grid.Row="0" Grid.Column="2" BorderThickness="1" BorderBrush="Black"/>
 
-        <Border Grid.Row="1" Grid.Column="0" BorderThickness="1" BorderBrush="Black"/>
-        <Border Grid.Row="1" Grid.Column="1" BorderThickness="1" BorderBrush="Black"/>
-        <Border Grid.Row="1" Grid.Column="2" BorderThickness="1" BorderBrush="Black"/>
 
-        <Border Grid.Row="2" Grid.Column="0" BorderThickness="1" BorderBrush="Black"/>
-        <Border Grid.Row="2" Grid.Column="1" BorderThickness="1" BorderBrush="Black"/>
-        <Border Grid.Row="2" Grid.Column="2" BorderThickness="1" BorderBrush="Black"/>
 
-        <Border Grid.Row="3" Grid.Column="0" BorderThickness="1" BorderBrush="Black"/>
-        <Border Grid.Row="3" Grid.Column="1" BorderThickness="1" BorderBrush="Black"/>
-        <Border Grid.Row="3" Grid.Column="2" BorderThickness="1" BorderBrush="Black"/>
 
         <!-- buttons -->
         <Button Content="Return" Grid.Column="0" Grid.Row="0"  
                 HorizontalAlignment="Center" VerticalAlignment="Center"
-                Height="30" Width="100"
+                Height="30" Width="100" Margin="10"
                 Click="ReturnButton_Click"/>
 
-        <Button Content="Start" Grid.Column="1" Grid.Row="0"
+        <!-- counting -->
+        <TextBlock Text="Numbers:" Grid.Column="2" Grid.Row="0"
+                   HorizontalAlignment="Left" VerticalAlignment="Top"
+                   Height="auto" Width="auto" Margin="10" />
+        <TextBlock x:Name="numCount" Text="???" Grid.Column="2" Grid.Row="0"
+                   HorizontalAlignment="Right" VerticalAlignment="Top"
+                   Height="auto" Width="auto" Margin="10"/>
+
+        <TextBlock Text="Compersions:" Grid.Column="2" Grid.Row="0"
+            HorizontalAlignment="Left" VerticalAlignment="Center"
+            Height="auto" Width="auto" Margin="10" />
+        <TextBlock x:Name="numCompersion" Text="???" Grid.Column="2"
+            HorizontalAlignment="Right" VerticalAlignment="Center"
+            Height="auto" Width="auto" Margin="10"/>
+
+        <TextBlock Text="Array accesses:" Grid.Column="2" Grid.Row="0"
+            HorizontalAlignment="Left" VerticalAlignment="Bottom"
+            Height="auto" Width="auto" Margin="10" />
+        <TextBlock x:Name="numAccess" Text="???" Grid.Column="2" Grid.Row="0"
+            HorizontalAlignment="Right" VerticalAlignment="Bottom"
+            Height="auto" Width="auto" Margin="10"/>
+
+        <!-- buttons -->
+        <TextBlock Text="Algorithm:" Grid.Column="3" Grid.Row="0"
+                   HorizontalAlignment="Center" VerticalAlignment="Top"
+                   Height="auto" Width="auto" />
+
+        <ComboBox x:Name="AlgBox" Grid.Column="3" Grid.Row="0"
+                  HorizontalAlignment="Center" VerticalAlignment="Center"
+                  Width="100" Height="30" Margin="10" >
+            <ComboBoxItem>Merge sort</ComboBoxItem>
+            <ComboBoxItem>Insertion sort</ComboBoxItem>
+            <ComboBoxItem>Quicksort</ComboBoxItem>
+            <ComboBoxItem>Bubble sort</ComboBoxItem>
+            <ComboBoxItem>Selection sort</ComboBoxItem>
+            <ComboBoxItem>Heapsort</ComboBoxItem>
+        </ComboBox>
+
+        <Button Content="Start" Grid.Column="4" Grid.Row="0"
         HorizontalAlignment="Center" VerticalAlignment="Center"
-          Height="30" Width="100"
-                Tag="0"
+        Height="30" Width="100" 
+        Tag="0"
         Click="StartButton_Click"/>
 
-        <Button Content="Stop" Grid.Column="2" Grid.Row="0"
-                HorizontalAlignment="Center" VerticalAlignment="Center"
-                  Height="30" Width="100"
-                Tag="1"
-                Click="StopButton_Click"/>
+        <Button Content="Stop" Grid.Column="5" Grid.Row="0"
+        HorizontalAlignment="Center" VerticalAlignment="Center"
+          Height="30" Width="100" Margin="10"
+        Tag="1"
+        Click="StopButton_Click"/>
 
 
-        <!-- Alghoritms -->
-        <TextBlock Text="Bubble Sort" Grid.Column="0" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Top"></TextBlock>
-        <Label x:Name="timerBubble" Content="00:00:00" Grid.Column="0" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Bottom"></Label>
 
-        <TextBlock Text="Insertion Sort" Grid.Column="0" Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Top"></TextBlock>
-        <Label x:Name="timerInsertion" Content="00:00:00" Grid.Column="0" Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Bottom"></Label>
+        <Border BorderBrush="Black" BorderThickness="1" Margin="10,10,10,10" Grid.Row="1" Grid.ColumnSpan="6">
+            <Canvas x:Name="canv"  Background="Transparent"/>
+        </Border>
 
-        <TextBlock Text="Selection Sort" Grid.Column="0" Grid.Row="3" HorizontalAlignment="Center" VerticalAlignment="Top"></TextBlock>
-        <Label x:Name="timerSelection" Content="00:00:00" Grid.Column="0" Grid.Row="3" HorizontalAlignment="Center" VerticalAlignment="Bottom"></Label>
 
-        <TextBlock Text="Merge Sort" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Top"></TextBlock>
-        <Label x:Name="timerMerge" Content="00:00:00" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Bottom"></Label>
 
-        <TextBlock Text="Quick Sort" Grid.Column="1" Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Top"></TextBlock>
-        <Label x:Name="timerQuick" Content="00:00:00" Grid.Column="1" Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Bottom"></Label>
-
-        <TextBlock Text="Heap Sort" Grid.Column="1" Grid.Row="3" HorizontalAlignment="Center" VerticalAlignment="Top"></TextBlock>
-        <Label x:Name="timerHeap" Content="00:00:00" Grid.Column="1" Grid.Row="3" HorizontalAlignment="Center" VerticalAlignment="Bottom"></Label>
-
-        <TextBlock Text="Bucket Sort" Grid.Column="2" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Top"></TextBlock>
-        <Label x:Name="timerBucket" Content="00:00:00" Grid.Column="2" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Bottom"></Label>
-
-        <TextBlock Text="Counting Sort" Grid.Column="2" Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Top"></TextBlock>
-        <Label x:Name="timerCounting" Content="00:00:00" Grid.Column="2" Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Bottom"></Label>
-
-        <TextBlock Text="Radix Sort" Grid.Column="2" Grid.Row="3" HorizontalAlignment="Center" VerticalAlignment="Top"></TextBlock>
-        <Label x:Name="timerRadix" Content="00:00:00" Grid.Column="2" Grid.Row="3" HorizontalAlignment="Center" VerticalAlignment="Bottom"></Label>
 
 
     </Grid>

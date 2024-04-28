@@ -5,7 +5,9 @@ namespace WirtualizacjaAlgorytmowSortowania
 {
     public partial class MainWindow : Window
     {
-        public static List<float> numbersList { get; set; }
+        public static List<int> NumbersList { get; set; }
+        public static int numSliderValue { get; set; }
+
         public MainWindow()
         {
             InitializeComponent();
@@ -15,6 +17,7 @@ namespace WirtualizacjaAlgorytmowSortowania
         {
             try
             {
+                numSliderValue = (int)numSlider.Value;
                 AddToList();
             }
             catch (FormatException FEx)
@@ -35,6 +38,7 @@ namespace WirtualizacjaAlgorytmowSortowania
 
         }
 
+
         private void EnterDown(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.Enter)
@@ -43,30 +47,43 @@ namespace WirtualizacjaAlgorytmowSortowania
             }
         }
 
+
         public void AddToList()
         {
-            string NumText = numbersString.Text;
-            NumText.Trim(',', ' ');
-            string[] numbersTab = NumText.Split(',', ' ');
-            if (numbersTab.Length < 2)
+            if (!string.IsNullOrEmpty(numbersString.Text))
             {
-                throw new Exception("No numbers to sort, it neet to be more than 1 number");
-            }
+                string NumText = numbersString.Text;
+                NumText.Trim(',', ' ');
+                string[] numbersTab = NumText.Split(',', ' ');
+                if (numbersTab.Length < 2)
+                {
+                    throw new Exception("No numbers to sort, it neet to be more than 1 number");
+                }
 
-            numbersList = new List<float>();
-            foreach (string num in numbersTab)
+                NumbersList = new List<int>();
+                for (int i = 0; i < numbersTab.Length; i++)
+                {
+                    if (int.TryParse(numbersTab[i], out int number))
+                    {
+                        NumbersList.Add(number);
+                    }
+                    else
+                    {
+                        throw new FormatException("Invalid number format");
+                    }
+                }
+            }
+            else
             {
-                if (float.TryParse(num, out float number))
+                Random rnd = new Random();
+                NumbersList = new List<int>();
+                for (int i = 0; i < (int)numSlider.Value; i++)
                 {
-                    numbersList.Add(number);
-                }
-                else
-                {
-                    throw new FormatException("Invalid number format");
+                    NumbersList.Add(rnd.Next(0, 100));
                 }
             }
-
         }
+
 
     }
 }

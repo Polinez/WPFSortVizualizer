@@ -5,73 +5,76 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WirtualizacjaAlgorytmowSortowania"
         mc:Ignorable="d"
-        Title="AlgorythmSortVirtualization" Height="450" Width="800">
+        Title="Home" Height="450" Width="800">
     <Grid>
-        
+
         <Grid.RowDefinitions>
             <RowDefinition Height="auto" MinHeight="50"/>
-            <RowDefinition Height="Auto" MinHeight="50"/>
+            <RowDefinition Height="Auto" MinHeight="60"/>
             <RowDefinition Height="auto" MinHeight="50"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        
+
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="auto"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
-        <TextBlock  Text="Hello," 
-                    FontSize="30"
-                    VerticalAlignment="Center" 
-                    HorizontalAlignment="Center"
-                    Grid.Row="0"
-                    Grid.Column="1"
-                    Height="40" 
-                    Width="76"/>
+        <TextBlock  Text="Algorithm Visualizer" 
+                    FontSize="30" VerticalAlignment="Center" HorizontalAlignment="Center"
+                    Grid.Row="0" Grid.Column="1"
+                    Height="auto" Width="auto" FontWeight="Heavy"/>
 
-        <TextBlock  Text="Write the numbers you would like to sort "  
-                    FontSize="15" 
-                    VerticalAlignment="Center" 
-                    HorizontalAlignment="Center"
+        <TextBlock  Text="Write the int numbers you would like to sort "  
+                    FontSize="15" VerticalAlignment="Center" HorizontalAlignment="Center"
                     TextWrapping="NoWrap"
-                    Grid.Row="1"
-                    Grid.Column="1" 
-                    Height="20" 
-                    />
-        <TextBlock  Text="(separated by commas)"  
-            FontSize="15" 
-            VerticalAlignment="Bottom" 
-            HorizontalAlignment="Center"
-            TextWrapping="NoWrap"
-            Grid.Row="1"
-            Grid.Column="1" 
-            Height="20" 
-            />
+                    Grid.Row="1" Grid.Column="1" 
+                    Height="20" />
+
+        <TextBlock  Text="(separated by commas)"  FontSize="15" 
+                    VerticalAlignment="Bottom"  HorizontalAlignment="Center"
+                    TextWrapping="NoWrap" Grid.Row="1" Grid.Column="1" 
+                    Height="20" />
 
         <TextBox x:Name="numbersString"
-         Grid.Row="2"
-         Grid.ColumnSpan="3"
-         Grid.Column="0"
-         VerticalAlignment="Center"
-         FontSize="16"
-         BorderBrush="Gray"
-         BorderThickness="1"
-         Padding="5"                                                                         
-         TextWrapping="Wrap" 
-         Height="33"
-         Margin="20,0,20,0"
-         KeyDown="EnterDown"/>
+                 Grid.Row="2" Grid.ColumnSpan="3" Grid.Column="0"
+                 VerticalAlignment="Center" FontSize="16" BorderBrush="Gray" 
+                 BorderThickness="1" Padding="5" TextWrapping="Wrap" 
+                 Height="33" Margin="20,0,20,0" KeyDown="EnterDown"/>
 
-        <Button x:Name="btnSort" 
-                Grid.Row="3"
-                Grid.Column="1"
-                HorizontalAlignment="Center"
-                VerticalAlignment="Center" 
-                Width="150"
-                Height="50" 
-                FontSize="16" 
-                Content="Sort"
-                Click="btnSort_Click" />
+        <Button x:Name="btnSort" Content="Sort"
+                Grid.Row="3" Grid.Column="1"
+                HorizontalAlignment="Center" VerticalAlignment="Bottom" 
+                Width="150" Height="50" 
+                FontSize="16" Margin="40" Click="btnSort_Click"/>
+
+        <TextBlock  Text="Or" 
+            FontSize="15" VerticalAlignment="Top" HorizontalAlignment="Center"
+            TextWrapping="NoWrap" Grid.Row="3" 
+            Height="auto" Margin="0,10,0,0" Grid.Column="1" />
+
+        <TextBlock  Text="Choose the amount of numbers:" 
+                    FontSize="15" VerticalAlignment="Top" HorizontalAlignment="Center"
+                    TextWrapping="NoWrap" Grid.Row="3" 
+                    Height="auto" Margin="0,67,0,0" Grid.Column="1" />
+
+        <Slider x:Name="numSlider" Grid.Row="3" Grid.Column="1" 
+                HorizontalAlignment="Center" VerticalAlignment="Top"
+                Margin="0,92,0,0" Width="200" Height="35" 
+                Interval="10" Minimum="10" Maximum="200" 
+                TickPlacement="BottomRight" TickFrequency="10" IsSnapToTickEnabled="True" />
+
+        <TextBlock  Text="10" 
+            FontSize="15" VerticalAlignment="Top" HorizontalAlignment="Left"
+            TextWrapping="NoWrap" Grid.Row="3" 
+            Height="auto" Margin="48,126,0,0" RenderTransformOrigin="-4.219,3.616" Grid.Column="1" />
+
+        <TextBlock  Text="200" 
+     FontSize="15" VerticalAlignment="Top" HorizontalAlignment="Left"
+     TextWrapping="NoWrap" Grid.Row="3" 
+     Height="auto" Margin="224,126,0,0" RenderTransformOrigin="-4.219,3.616" Grid.Column="1" />
+
+
     </Grid>
 </Window>
