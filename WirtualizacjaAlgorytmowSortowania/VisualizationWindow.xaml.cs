@@ -3,6 +3,7 @@ using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Shapes;
 using System.Windows.Threading;
+using WirtualizacjaAlgorytmowSortowania.Algorithms;
 
 namespace WirtualizacjaAlgorytmowSortowania
 {
@@ -57,60 +58,53 @@ namespace WirtualizacjaAlgorytmowSortowania
             selectedHistory = new List<int[]>();
             sortHistory = new List<int[]>();
 
+
+            ISortAlgorithm algorithm=null;
             switch (AlgBox.SelectedIndex)
             {
                 case 0:
                     algName.Text = "Quick Sort";
                     memUsage.Text = "O(log n)";
                     avgComplexity.Text = "O(n log n)";
-                    QuickSort(0, arr.Length);
-                    DrawHistory();
-
+                    algorithm = new QuickSortAlgorithm();
                     break;
                 case 1:
                     algName.Text = "Bubble Sort";
                     memUsage.Text = "O(1)";
                     avgComplexity.Text = "O(n^2)";
-                    BubbleSort();
-                    DrawHistory();
-
+                    algorithm=new BubbleSortAlgorithm();
                     break;
                 case 2:
                     algName.Text = "Insertion Sort";
                     memUsage.Text = "O(1)";
                     avgComplexity.Text = "O(n^2)";
-                    InsertionSort();
-                    DrawHistory();
-
+                    algorithm=new InsertionSortAlgorithm();
                     break;
                 case 3:
                     algName.Text = "Selection Sort";
                     memUsage.Text = "O(1)";
                     avgComplexity.Text = "O(n^2)";
-                    SelectionSort();
-                    DrawHistory();
-
+                    algorithm = new SelectionSortAlgorithm();
                     break;
                 case 4:
                     algName.Text = "Merge Sort";
                     memUsage.Text = "O(n)";
                     avgComplexity.Text = "O(n log n)";
-                    MergeSort(0, arr.Length);
-                    DrawHistory();
-
+                    algorithm = new MergeSortAlgorithm();
                     break;
                 case 5:
                     algName.Text = "Heap Sort";
                     memUsage.Text = "O(1)";
                     avgComplexity.Text = "O(n log n)";
-                    HeapSort();
-                    DrawHistory();
-
+                    algorithm = new HeapSortAlgorithm();
                     break;
                 default:
                     MessageBox.Show("You need to select an algorithm.");
                     break;
             }
+
+            algorithm.Sort(arr, ref comparisons, ref selectedArr, AddHistorySnap, DrawHistory);
+            DrawHistory();
             numCount.Text = numList.Count.ToString();
             numCompersion.Text = comparisons.ToString();
 
@@ -210,235 +204,6 @@ namespace WirtualizacjaAlgorytmowSortowania
             this.Close();
             mainWindow.Show();
         }
-
-
-        //Algorytmy
-        int[] MergeSort(int startI, int endI)
-        {
-            int length = endI - startI;
-            if (length == 1)
-            {
-
-                return new int[] { arr[startI] };
-            }
-            int[] A = MergeSort(startI, startI + length / 2);
-            int[] B = MergeSort(startI + length / 2, endI);
-            int[] AB = new int[A.Length + B.Length];
-            int iA = 0;
-            int iB = 0;
-
-            for (int i = 0; i < AB.Length; i++)
-            {
-
-
-                comparisons++;
-                if (iB < B.Length && (iA == A.Length || B[iB] < A[iA]))
-                {
-                    comparisons++;
-                    if (iA != A.Length)
-                    {
-                        comparisons++;
-                    }
-                    AB[i] = B[iB];
-                    arr[startI + i] = B[iB];
-                    iB++;
-                }
-                else
-                {
-                    if (iB < B.Length)
-                    {
-                        comparisons += 2;
-                    }
-
-                    AB[i] = A[iA];
-                    arr[startI + i] = A[iA];
-                    iA++;
-                }
-                selectedArr = new int[] { startI + i };
-                AddHistorySnap();
-            }
-
-            return AB;
-        }
-
-        void InsertionSort()
-        {
-            for (int i = 1; i < arr.Length; i++)
-            {
-                int curr = i;
-                while (curr - 1 >= 0 && arr[curr - 1] > arr[curr])
-                {
-
-
-                    comparisons += 2;
-                    int oldIValue = arr[curr];
-                    arr[curr] = arr[curr - 1];
-                    arr[curr - 1] = oldIValue;
-                    curr--;
-                }
-
-                comparisons++;
-                if (curr - 1 >= 0)
-                {
-                    comparisons++;
-                }
-
-                selectedArr = new int[] { curr };
-                AddHistorySnap();
-            }
-        }
-
-        void QuickSort(int startI, int endI)
-        {
-            comparisons++;
-            if (endI - startI < 1)
-                return;
-
-            int pI = endI - 1;
-
-            int i = startI;
-            int j = startI;
-
-            while (j < endI - 1)
-            {
-                comparisons++;
-
-                if (arr[j] <= arr[pI])
-                {
-                    comparisons++;
-
-                    int oldJ = arr[j];
-                    arr[j] = arr[i];
-                    arr[i] = oldJ;
-                    i++;
-                    selectedArr = new int[] { j, i };
-                    AddHistorySnap();
-                }
-                j++;
-            }
-            comparisons++;
-
-            int oldI = arr[i];
-            arr[i] = arr[pI];
-            arr[pI] = oldI;
-            pI = i;
-
-
-            selectedArr = new int[] { pI, i };
-            AddHistorySnap();
-
-            QuickSort(startI, pI);
-            QuickSort(pI + 1, endI);
-        }
-
-        void BubbleSort()
-        {
-            for (int i = arr.Length; i >= 0; i--)
-            {
-                for (int j = 0; j < i - 1; j++)
-                {
-                    if (arr[j] > arr[j + 1])
-                    {
-                        int oldJ = arr[j];
-                        arr[j] = arr[j + 1];
-                        arr[j + 1] = oldJ;
-
-
-                    }
-                    comparisons++;
-                }
-                selectedArr = new int[] { i };
-                AddHistorySnap();
-
-            }
-        }
-
-        void SelectionSort()
-        {
-            for (int i = 0; i < arr.Length; i++)
-            {
-                int minI = i;
-                for (int j = i + 1; j < arr.Length; j++)
-                {
-                    if (arr[minI] > arr[j])
-                    {
-                        minI = j;
-                    }
-
-                    comparisons++;
-                }
-                int oldI = arr[i];
-                arr[i] = arr[minI];
-                arr[minI] = oldI;
-
-                selectedArr = new int[] { i };
-                AddHistorySnap();
-
-            }
-        }
-
-        void HeapSort()
-        {
-
-            for (int i = arr.Length / 2 - 1; i >= 0; i--)
-            {
-                Heapify(i, arr.Length);
-            }
-
-            for (int i = arr.Length - 1; i >= 0; i--)
-            {
-                int oldI = arr[i];
-                arr[i] = arr[0];
-                arr[0] = oldI;
-
-                Heapify(0, i);
-            }
-
-            selectedArr = new int[] { arr.Length - 1 };
-
-            AddHistorySnap();
-
-            void Heapify(int i, int topI)
-            {
-                int maxI = i;
-                int leftChildI = i * 2 + 1;
-                int rightChildI = i * 2 + 2;
-
-                comparisons++;
-                if (leftChildI < topI)
-                {
-
-                    comparisons++;
-                    if (arr[leftChildI] > arr[maxI])
-                        maxI = leftChildI;
-                }
-
-                comparisons++;
-                if (rightChildI < topI)
-                {
-
-                    comparisons++;
-                    if (arr[rightChildI] > arr[maxI])
-                        maxI = rightChildI;
-                }
-
-                comparisons++;
-                if (maxI != i)
-                {
-                    int oldI = arr[i];
-                    arr[i] = arr[maxI];
-                    arr[maxI] = oldI;
-
-
-
-                    selectedArr = new int[] { i };
-                    AddHistorySnap();
-                    Heapify(maxI, topI);
-                }
-            }
-        }
-
-
 
     }
 }
