@@ -1,16 +1,14 @@
-﻿using System;
-
-namespace WirtualizacjaAlgorytmowSortowania.Algorithms
+﻿namespace WirtualizacjaAlgorytmowSortowania.Algorithms
 {
     public class QuickSortAlgorithm : ISortAlgorithm
     {
-        public void Sort(int[] arr, ref int comparisons, ref int[] selectedArr, Action AddHistorySnap, Action DrawHistory)
+        public void Sort(List<int> arr, ref int comparisons, ref List<int> selectedArr, Action AddHistorySnap, Action DrawHistory)
         {
             int localComparisons = comparisons;
 
-            QuickSort(0, arr.Length, ref selectedArr);
+            QuickSort(0, arr.Count, ref selectedArr);
 
-            void QuickSort(int startI, int endI, ref int[] selectedArr)
+            void QuickSort(int startI, int endI, ref List<int> selectedArr)
             {
                 localComparisons++;
 
@@ -34,7 +32,7 @@ namespace WirtualizacjaAlgorytmowSortowania.Algorithms
                         arr[j] = arr[i];
                         arr[i] = oldJ;
                         i++;
-                        selectedArr = new int[] { j, i }; // Aktualizacja referencji
+                        selectedArr = new List<int> { j, i }; // Update selectedArr
                         AddHistorySnap();
                     }
                     j++;
@@ -46,15 +44,14 @@ namespace WirtualizacjaAlgorytmowSortowania.Algorithms
                 arr[pI] = oldI;
                 pI = i;
 
-                selectedArr = new int[] { pI, i }; // Aktualizacja referencji
+                selectedArr = new List<int> { pI, i }; // Update selectedArr
                 AddHistorySnap();
 
                 QuickSort(startI, pI, ref selectedArr);
                 QuickSort(pI + 1, endI, ref selectedArr);
             }
 
-            comparisons = localComparisons; // Aktualizacja wartości comparisons po zakończeniu sortowania
+            comparisons = localComparisons;
         }
-
     }
 }

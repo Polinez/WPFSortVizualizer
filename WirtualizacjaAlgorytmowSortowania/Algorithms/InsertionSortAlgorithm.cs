@@ -1,18 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace WirtualizacjaAlgorytmowSortowania.Algorithms
+﻿namespace WirtualizacjaAlgorytmowSortowania.Algorithms
 {
     internal class InsertionSortAlgorithm : ISortAlgorithm
     {
-        public void Sort(int[] arr, ref int comparisons, ref int[] selectedArr, Action AddHistorySnap, Action DrawHistory)
+        public void Sort(List<int> arr, ref int comparisons, ref List<int> selectedArr, Action AddHistorySnap, Action DrawHistory)
         {
             int localComparisons = comparisons;
 
-            for (int i = 1; i < arr.Length; i++)
+            for (int i = 1; i < arr.Count; i++)
             {
                 int curr = i;
                 while (curr - 1 >= 0 && arr[curr - 1] > arr[curr])
@@ -30,11 +24,11 @@ namespace WirtualizacjaAlgorytmowSortowania.Algorithms
                     localComparisons++;
                 }
 
-                selectedArr = new int[] { curr };
+                selectedArr = new List<int> { curr };
                 AddHistorySnap();
             }
 
-            comparisons = localComparisons; // Aktualizacja wartości comparisons po zakończeniu sortowania
+            comparisons = localComparisons;
         }
 
     }

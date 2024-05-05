@@ -2,59 +2,59 @@
 {
     internal class MergeSortAlgorithm : ISortAlgorithm
     {
-        public void Sort(int[] arr, ref int comparisons, ref int[] selectedArr, Action AddHistorySnap, Action DrawHistory)
+        public void Sort(List<int> arr, ref int comparisons, ref List<int> selectedArr, Action AddHistorySnap, Action DrawHistory)
         {
             int localComparisons = comparisons;
 
-            MergeSort(0, arr.Length, ref selectedArr);
+            MergeSort(0, arr.Count, ref selectedArr);
 
-            int[] MergeSort(int startI, int endI, ref int[] selectedArr)
+            List<int> MergeSort(int startI, int endI, ref List<int> selectedArr)
             {
                 int length = endI - startI;
                 if (length == 1)
                 {
-                    selectedArr = new int[] { startI };
+                    selectedArr = new List<int>() { startI };
                     AddHistorySnap();
-                    return new int[] { arr[startI] };
+                    return new List<int>() { arr[startI] };
                 }
-                int[] A = MergeSort(startI, startI + length / 2, ref selectedArr);
-                int[] B = MergeSort(startI + length / 2, endI, ref selectedArr);
-                int[] AB = new int[A.Length + B.Length];
+                List<int> A = MergeSort(startI, startI + length / 2, ref selectedArr);
+                List<int> B = MergeSort(startI + length / 2, endI, ref selectedArr);
+                List<int> AB = new List<int>(A.Count + B.Count);
                 int iA = 0;
                 int iB = 0;
 
-                for (int i = 0; i < AB.Length; i++)
+                for (int i = 0; i < A.Count + B.Count; i++)
                 {
                     localComparisons++;
-                    if (iB < B.Length && (iA == A.Length || B[iB] < A[iA]))
+                    if (iB < B.Count && (iA == A.Count || B[iB] < A[iA]))
                     {
                         localComparisons++;
-                        if (iA != A.Length)
+                        if (iA != A.Count)
                         {
                             localComparisons++;
                         }
-                        AB[i] = B[iB];
+                        AB.Add(B[iB]);
                         arr[startI + i] = B[iB];
                         iB++;
                     }
                     else
                     {
-                        if (iB < B.Length)
+                        if (iB < B.Count)
                         {
                             localComparisons += 2;
                         }
-                        AB[i] = A[iA];
+                        AB.Add(A[iA]);
                         arr[startI + i] = A[iA];
                         iA++;
                     }
-                    selectedArr = new int[] { startI + i };
+                    selectedArr = new List<int>() { startI + i };
                     AddHistorySnap();
                 }
 
                 return AB;
             }
 
-            comparisons = localComparisons; // Aktualizacja wartości comparisons po zakończeniu sortowania
+            comparisons = localComparisons;
         }
 
     }

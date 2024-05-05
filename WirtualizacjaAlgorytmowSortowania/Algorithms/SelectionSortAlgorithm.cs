@@ -2,14 +2,14 @@
 {
     internal class SelectionSortAlgorithm : ISortAlgorithm
     {
-        public void Sort(int[] arr, ref int comparisons, ref int[] selectedArr, Action AddHistorySnap, Action DrawHistory)
+        public void Sort(List<int> arr, ref int comparisons, ref List<int> selectedArr, Action AddHistorySnap, Action DrawHistory)
         {
             int localComparisons = comparisons;
 
-            for (int i = 0; i < arr.Length; i++)
+            for (int i = 0; i < arr.Count; i++)
             {
                 int minI = i;
-                for (int j = i + 1; j < arr.Length; j++)
+                for (int j = i + 1; j < arr.Count; j++)
                 {
                     if (arr[minI] > arr[j])
                     {
@@ -22,11 +22,11 @@
                 arr[i] = arr[minI];
                 arr[minI] = oldI;
 
-                selectedArr = new int[] { i };
+                selectedArr = new List<int> { i };
                 AddHistorySnap();
             }
 
-            comparisons = localComparisons; // Aktualizacja wartości comparisons po zakończeniu sortowania
+            comparisons = localComparisons;
         }
 
     }

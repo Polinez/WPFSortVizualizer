@@ -1,19 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace WirtualizacjaAlgorytmowSortowania.Algorithms
+﻿namespace WirtualizacjaAlgorytmowSortowania.Algorithms
 {
     public class BubbleSortAlgorithm : ISortAlgorithm
     {
-        public void Sort(int[] arr, ref int comparisons, ref int[] selectedArr, Action AddHistorySnap, Action DrawHistory)
+        public void Sort(List<int> arr, ref int comparisons, ref List<int> selectedArr, Action AddHistorySnap, Action DrawHistory)
         {
             int localComparisons = comparisons;
 
-
-            for (int i = arr.Length; i >= 0; i--)
+            for (int i = arr.Count; i >= 0; i--)
             {
                 for (int j = 0; j < i - 1; j++)
                 {
@@ -22,18 +15,14 @@ namespace WirtualizacjaAlgorytmowSortowania.Algorithms
                         int oldJ = arr[j];
                         arr[j] = arr[j + 1];
                         arr[j + 1] = oldJ;
-
-
                     }
                     localComparisons++;
                 }
-                selectedArr = new int[] { i };
+                selectedArr = new List<int>() { i };
                 AddHistorySnap();
-
             }
 
-            comparisons = localComparisons; // Aktualizacja wartości comparisons po zakończeniu sortowania
-
+            comparisons = localComparisons;
         }
     }
 }
