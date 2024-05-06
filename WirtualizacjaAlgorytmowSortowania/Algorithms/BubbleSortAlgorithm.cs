@@ -6,18 +6,25 @@
         {
             int localComparisons = comparisons;
 
-            for (int i = arr.Count; i >= 0; i--)
+            for (int i = arr.Count - 1; i >= 0; i--)
             {
-                for (int j = 0; j < i - 1; j++)
+                bool swapped = false;
+
+                for (int j = 0; j < i; j++)
                 {
                     if (arr[j] > arr[j + 1])
                     {
-                        int oldJ = arr[j];
+                        int temp = arr[j];
                         arr[j] = arr[j + 1];
-                        arr[j + 1] = oldJ;
+                        arr[j + 1] = temp;
+                        swapped = true;
                     }
                     localComparisons++;
                 }
+
+                if (!swapped)
+                    break;
+
                 selectedArr = new List<int>() { i };
                 AddHistorySnap();
             }
