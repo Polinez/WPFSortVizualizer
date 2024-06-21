@@ -10,7 +10,7 @@ After launching the application, enter the numbers to be sorted into the text bo
 
 Then, choose one of the available sorting algorithms from the dropdown list and click the "Sort" or "Start" button to begin the sorting visualization. You can also pause or resume the visualization by clicking the "Stop" or "Play" button, respectively. To return to the main screen, press the "Return" button.
 
-![2](https://github.com/Polinez/WPFSortVizualizer/assets/44930743/66959ca0-84b1-4b67-8a8c-3ae61634604f)
+![2](https://github.com/Polinez/WPFSortVizualizer/assets/44930743/42fa55da-6dde-4aaf-804c-0dd0099b1f93)
 
 
 ## Code Structure
