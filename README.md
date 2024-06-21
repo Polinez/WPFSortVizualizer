@@ -4,7 +4,12 @@
 The "WPFSortVizualizer" project is a desktop application written in C# using the .NET platform, which allows visualizing various sorting algorithms on sets of numbers.
 
 ## User Instructions
-After launching the application, enter the numbers to be sorted into the text box or select a random number using the slider. Then, choose one of the available sorting algorithms from the dropdown list and click the "Sort" or "Start" button to begin the sorting visualization. You can also pause or resume the visualization by clicking the "Stop" or "Play" button, respectively. To return to the main screen, press the "Return" button.
+After launching the application, enter the numbers to be sorted into the text box or select a random number using the slider. 
+![1](https://github.com/Polinez/WPFSortVizualizer/assets/44930743/0d252769-54d6-474a-b011-d2f01a58b201)
+
+Then, choose one of the available sorting algorithms from the dropdown list and click the "Sort" or "Start" button to begin the sorting visualization. You can also pause or resume the visualization by clicking the "Stop" or "Play" button, respectively. To return to the main screen, press the "Return" button.
+![2](https://github.com/Polinez/WPFSortVizualizer/assets/44930743/66959ca0-84b1-4b67-8a8c-3ae61634604f)
+
 
 ## Code Structure
 - **MainWindow.xaml**: Contains the user interface for the main application.
