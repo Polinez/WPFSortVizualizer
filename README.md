@@ -33,8 +33,8 @@ Then, choose one of the available sorting algorithms from the dropdown list and 
 - **Merge Sort**: Merge sort is a divide and conquer sorting algorithm. It works by recursively dividing the list into smaller parts and then merging them in the proper order.
 - **Heap Sort**: Heap sort uses a heap data structure to sort elements.
 
-## Required Libraries
-No additional libraries are required. The project utilizes standard .NET Framework libraries.
+## Note
+I am a learning programmer, and this project is my attempt to show others what I have learned on my programming journey.
 
 ## License
 This project is licensed under the [MIT License](https://opensource.org/licenses/MIT).
